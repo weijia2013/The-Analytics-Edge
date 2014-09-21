@@ -1,5 +1,5 @@
 ---
-title: "Week 1"
+title: "Week 1 Notes"
 author: "Weijia Chen"
 date: "21 September 2014"
 output: html_document
