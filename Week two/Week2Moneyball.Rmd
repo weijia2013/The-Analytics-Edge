@@ -1,0 +1,8 @@
+---
+title: "Week 2 Money Ball"
+author: "Weijia Chen"
+date: "21 September 2014"
+output: html_document
+---
+
+

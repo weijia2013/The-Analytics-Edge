@@ -1,0 +1,110 @@
+---
+title: "Week 2 Linear Regression Notes"
+author: "Weijia Chen"
+date: "21 September 2014"
+output: html_document
+---
+
+###Quick 1
+More harvest rain decreases the price and higher temperatures increase the price
+```{r}
+options(scipen = 1)
+```
+
+##Video 2 ONE-VARIABLE LINEAR REGRESSION
+Using one independent variable to predict dependent variable. The goal of linear regression is to create a predictive line through the data. There are many different lines that could be drawn to predict the dependent variable using the one independent variable.
+
+One variable regression model
+$$y^i = \beta_{0} + \beta_{1} x^i + \epsilon^i$$
+
+$y^i$ = dependent variable for the $i^{th}$ observation
+
+$x^i$ = independent variable for the $i^{th}$ observation
+
+$\epsilon^i$ = error term for the $i^{th}$ observation
+
+$\beta_{0}$ = intercept coefficient
+
+$\beta_{1}$ = regression coefficient for the indenpendent variable
+
+The goal of linear regression is to minimise the $y$ - $y^i$ close to 0. Trying to find the most smallest value of $y$ - $y^i$. It means that trying to minimise $\epsilon^i$
+
+### Sum of Square Error SSE
+
+$SSE = (\epsilon^1) ^ 2 + (\epsilon^2) ^ 2 +...+ (\epsilon^i) ^ 2$
+
+**_SSE_** can be hard to interpret:
+
++ Depends on N
++ Units are hard to understand
+
+**_RMSE (Root-Mean-Square Error)_**:
+$$RMSE = \sqrt{\frac{SSE}{N}}$$
+
++ Normalised by N, units of dependent variable
+
+###$R^2$ is another common error measure for linear regression
+
++ It compares the best model to a baseline model, the model that does not use any variables. 
++ The model that does not use any variables means $y$ is a constant value. The error of this model named as **_SST_**
+
+$$R^2 = 1- \frac{SSE}{SST}$$
+
++ $R^2$ captures value added from using a model
+
+    + $R^2 = 0$ means no improvement over baseline
+
+    + $R^2 = 1$ means a perfect predictive model
+
+###Quick questin 2
+1. The baseline prediction value is the `mean` of all three dependent values
+```{r}
+mean(c(2,2,8))
+```
+2.  Sum of Squared Errors (SSE) 
+```{r}
+(2-2)^2 + (2-5)^2 + (8-5)^2
+```
+3. Total Sum of Squares (SST)
+```{r}
+(2-4)^2 + (2-4)^2 + (8-4)^2
+```
+4. $R^2$
+```{r}
+1 - 18/24
+```
+## Vedio 3 Multiple Linear Regression
+$$y^i = \beta_{0} + \beta_{1} x_{1}^i + \beta_{2} x_{2}^i + ... + \beta_{k} x_{k}^i +\epsilon^i$$
+
+$y^i$ = dependent variable for the $i^{th}$ observation
+
+$x_{j}^i$ = $j^{th}$ independent variable for the $i^{th}$ observation
+
+$\epsilon^i$ = error term for the $i^{th}$ observation
+
+$\beta_{0}$ = intercept coefficient
+
+$\beta_{j}$ = regression coefficient for the $j^{th}$ indenpendent variable
+
+**_Best model coefficients selected to minisize SSE_**
+
+### Quick Question 3
+**_$R^2$ cannot be decreased at all by adding new variables_**
+
+### Quick Question 4
+```{r}
+wine <- read.csv("wine.csv")
+model4 <- lm(Price ~ HarvestRain + WinterRain, data = wine)
+summary(model4)
+SSE <- sum(model4$residual^2)
+SSE
+```
+### Quick Question 5
+```{r}
+cor(wine$HarvestRain,wine$WinterRain)
+```
+
+Based on Pr(>|t|), HarvestRain has two stars, and WinterRain has no star, therefore, the coefficient for HarvestRain is _significant_, the coefficient for WinterRain _isn't significant_.
+
+### Quick Question 6
+$R^2$ cannot be greater than 1.
