@@ -22,9 +22,9 @@ University of Auckland was the first version of R developed.
 
 ###Quick question 2
 ##### Rules of naming objects in R
-1. Don't use spaces or underscores in object name
-2. Don's start object name with a number
-3. Object names are case sensitive. Capital and lowercase letters are different.
+* Don't use spaces or underscores in object name
+* Don's start object name with a number
+* Object names are case sensitive. Capital and lowercase letters are different.
 
 ###Quick question 3
 1. Quotes **_""_** changes all values' class to **_Character_**
